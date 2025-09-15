@@ -1,0 +1,311 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #C9A96E;
+  --color-primary-light: #D4B985;
+  --color-primary-dark: #B8956B;
+  --color-secondary: #1a2332;
+  --color-secondary-light: #2a3442;
+  --color-secondary-dark: #0f1419;
+  --color-accent-cream: #F8F6F0;
+  --color-accent-gold: #C9A96E;
+  --color-warm-gray: #F7F5F3;
+  --color-soft-white: #FEFEFE;
+  
+  --font-family-serif: 'Playfair Display', serif;
+  --font-family-sans: 'Inter', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: theme('colors.gray.800');
+    background-color: theme('colors.white');
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white px-8 py-3 rounded-lg font-medium transition-all duration-500 hover:bg-primary-dark hover:shadow-xl hover:scale-105;
+    transform-origin: center;
+    will-change: transform, box-shadow;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-primary border-2 border-primary px-8 py-3 rounded-lg font-medium transition-all duration-500 hover:bg-primary hover:text-white hover:shadow-xl;
+    transform-origin: center;
+    will-change: transform, box-shadow;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-serif text-secondary mb-6;
+    animation: luxury-fade-in-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .card-elegant {
+    @apply bg-white rounded-2xl shadow-lg transition-all duration-700 transform;
+    will-change: transform, box-shadow;
+    animation: luxury-card-entrance 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  .card-elegant:hover {
+    @apply shadow-2xl;
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(201, 169, 110, 0.1);
+  }
+
+  .gradient-overlay {
+    background: linear-gradient(135deg, rgba(201, 169, 110, 0.9), rgba(26, 35, 50, 0.8));
+    animation: luxury-gradient-shift 3s ease-in-out infinite alternate;
+  }
+}
+
+.parallax-section {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #C9A96E, #B8956B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.animate-on-scroll.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.text-left {
+  text-align: left;
+}
+
+/* Luxury Animation Keyframes */
+@keyframes luxury-fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes luxury-card-entrance {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) rotateX(15deg);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-10px) rotateX(-5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+  }
+}
+
+@keyframes luxury-gradient-shift {
+  0% {
+    background: linear-gradient(135deg, rgba(201, 169, 110, 0.9), rgba(26, 35, 50, 0.8));
+  }
+  100% {
+    background: linear-gradient(135deg, rgba(26, 35, 50, 0.8), rgba(201, 169, 110, 0.9));
+  }
+}
+
+@keyframes luxury-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes luxury-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+/* Enhanced scroll animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(50px) scale(0.95);
+  transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.animate-on-scroll.animate {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Luxury hover effects */
+.luxury-hover {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.luxury-hover:hover {
+  transform: translateY(-5px) scale(1.02);
+  filter: brightness(1.05);
+}
+
+.luxury-float {
+  animation: luxury-float 4s ease-in-out infinite;
+}
+
+/* Page transition improvements */
+.page-transition-enter-active,
+.page-transition-leave-active {
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.page-transition-enter-from {
+  opacity: 0;
+  transform: translateX(50px) scale(0.98);
+}
+
+.page-transition-leave-to {
+  opacity: 0;
+  transform: translateX(-50px) scale(1.02);
+}
+
+/* RTL Support for Arabic */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700&display=swap');
+
+[dir="rtl"] {
+  font-family: 'Tajawal', 'Arial', sans-serif;
+}
+
+[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+[dir="rtl"] .text-right {
+  text-align: left;
+}
+
+[dir="rtl"] .space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+/* Navigation adjustments for RTL */
+[dir="rtl"] .header-nav {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .space-x-8 > :not([hidden]) ~ :not([hidden]) {
+  margin-left: 0;
+  margin-right: 2rem;
+}
+
+[dir="rtl"] .space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+[dir="rtl"] .space-x-3 > :not([hidden]) ~ :not([hidden]) {
+  margin-left: 0;
+  margin-right: 0.75rem;
+}
+
+[dir="rtl"] .space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+/* Fix button and flex layouts for RTL */
+[dir="rtl"] .flex-row {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .justify-between {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .items-center {
+  text-align: right;
+}
+
+/* Language selector specific RTL fixes */
+[dir="rtl"] .language-dropdown {
+  right: auto;
+  left: 0;
+}
+
+/* Mobile menu RTL fixes */
+[dir="rtl"] .mobile-menu {
+  text-align: right;
+}
+
+/* Logo and brand RTL adjustments */
+[dir="rtl"] .brand-container {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .brand-text {
+  text-align: right;
+  margin-right: 0;
+  margin-left: 0.75rem;
+}
+
+/* Better RTL navigation spacing */
+[dir="rtl"] .header-nav {
+  direction: rtl;
+}
+
+[dir="rtl"] .nav-link {
+  margin-left: 0;
+  margin-right: 2rem;
+}
+
+[dir="rtl"] .nav-link:last-child {
+  margin-right: 0;
+}
+
+/* RTL header container */
+[dir="rtl"] .flex.items-center.justify-between {
+  flex-direction: row-reverse;
+}
+
+/* Fix language selector positioning for RTL */
+[dir="rtl"] .language-dropdown {
+  left: 0;
+  right: auto;
+}
